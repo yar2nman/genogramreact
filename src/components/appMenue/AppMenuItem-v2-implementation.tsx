@@ -12,6 +12,8 @@ import Collapse from '@material-ui/core/Collapse'
 import IconExpandLess from '@material-ui/icons/ExpandLess'
 import IconExpandMore from '@material-ui/icons/ExpandMore'
 
+import { Link } from 'react-router-dom';
+
 // React runtime PropTypes
 export const AppMenuItemPropTypes = {
   name: PropTypes.string.isRequired,
@@ -32,7 +34,7 @@ export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
 }
 
 const AppMenuItem: React.FC<AppMenuItemProps> = props => {
-  const { name, Icon, items = [] } = props
+  const { name, Icon, items = [], link = '' } = props
   const classes = useStyles()
   const isExpandable = items && items.length > 0
   const [open, setOpen] = React.useState(false)
@@ -42,14 +44,14 @@ const AppMenuItem: React.FC<AppMenuItemProps> = props => {
   }
 
   const MenuItemRoot = (
-    <ListItem button className={classes.menuItem} onClick={handleClick}>
+      <ListItem button className={classes.menuItem} component={Link} to={`${link}`} onClick={handleClick}>
       {/* Display an icon if any */}
       {!!Icon && (
-        <ListItemIcon className={classes.menuItemIcon}>
+        <ListItemIcon className={classes.menuItemIcon} >
           <Icon />
         </ListItemIcon>
       )}
-      <ListItemText primary={name} inset={!Icon} />
+       <ListItemText primary={name} inset={!Icon} />
       {/* Display the expand menu if the item has children */}
       {isExpandable && !open && <IconExpandMore />}
       {isExpandable && open && <IconExpandLess />}

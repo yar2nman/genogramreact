@@ -24,7 +24,7 @@ const appMenuItems = [
   },
   {
     name: 'Customers',
-    link: '/customers',
+    link: '/users',
     Icon: IconPeople,
   },
   {
