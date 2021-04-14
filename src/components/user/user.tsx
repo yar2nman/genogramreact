@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,17 +8,29 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
+// import PersonIcon from '@material-ui/icons/Person';
+import { useHistory } from 'react-router-dom';
 
-const UserController = (props: {user: UserRecord; delUser: any}) => {
+
+const UserController = (props: {user: UserRecord; deleteUser: any}) => {
     const classes = useStyles();
-    const {user, delUser} = props;
+    const {user, deleteUser} = props;
+    let mhistory = useHistory();
+
+
+    const goEdit = (uid: string) => {
+      mhistory.push('/edituser/' + uid)
+    }
+    const goCustomClaims = (uid: string) => {
+      mhistory.push('/userclaims/' + uid)
+    }
     return <div>{
         
         <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={'usericon.png'}
+            image={user.photoURL || 'https://lh3.googleusercontent.com/a-/AOh14GiTtFFjjczNngetqO8FaD9dDSduWum1RvKXfuOvXr4=s96-c'}
             title="User"
           />
           <CardContent>
@@ -35,25 +46,25 @@ const UserController = (props: {user: UserRecord; delUser: any}) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="outlined" size="small" color="primary">
-            Edit
-          </Button>
-          <Button variant="outlined" size="small" color="primary">
+            <Button variant="outlined" size="small" color="primary" onClick={() => goEdit(user.uid)}>
+              Edit
+            </Button>
+          <Button variant="outlined" size="small" color="primary" onClick={() => goCustomClaims(user.uid)}>
             Custom Claims
           </Button>
-          <Button variant="outlined" size="small" color="secondary" onClick={delUser}>
+          <Button variant="outlined" size="small" color="secondary" onClick={deleteUser}>
             Delete
           </Button>
         </CardActions>
       </Card>
-        
     }</div>
 }
 
 const useStyles = makeStyles({
     root: {
-        margin: '5px',
-      maxWidth: 345,
+        margin: 5,
+      maxWidth: 600,
+      minWidth: 400,
     },
     // media: {
     //   height: 140,
@@ -68,10 +79,6 @@ const useStyles = makeStyles({
         position: "relative",
         zIndex: 1000    },
   });
-
-UserController.propTypes = {
-    user: PropTypes.object,
-}
 
 export default UserController
 

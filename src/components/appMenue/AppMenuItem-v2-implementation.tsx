@@ -43,7 +43,7 @@ const AppMenuItem: React.FC<AppMenuItemProps> = props => {
     setOpen(!open)
   }
 
-  const MenuItemRoot = (
+  const MenuItemRoot = link !== '' ? (
       <ListItem button className={classes.menuItem} component={Link} to={`${link}`} onClick={handleClick}>
       {/* Display an icon if any */}
       {!!Icon && (
@@ -57,6 +57,20 @@ const AppMenuItem: React.FC<AppMenuItemProps> = props => {
       {isExpandable && open && <IconExpandLess />}
     </ListItem>
   )
+  : (
+        <ListItem button className={classes.menuItem} onClick={handleClick}>
+        {/* Display an icon if any */}
+        {!!Icon && (
+          <ListItemIcon className={classes.menuItemIcon} >
+            <Icon />
+          </ListItemIcon>
+        )}
+        <ListItemText primary={name} inset={!Icon} />
+        {/* Display the expand menu if the item has children */}
+        {isExpandable && !open && <IconExpandMore />}
+        {isExpandable && open && <IconExpandLess />}
+      </ListItem>
+    )
 
   const MenuItemChildren = isExpandable ? (
     <Collapse in={open} timeout="auto" unmountOnExit>

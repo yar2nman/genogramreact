@@ -8,6 +8,7 @@ import IconShoppingCart from '@material-ui/icons/ShoppingCart'
 import IconPeople from '@material-ui/icons/People'
 import IconBarChart from '@material-ui/icons/BarChart'
 import IconLibraryBooks from '@material-ui/icons/LibraryBooks'
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import AppMenuItem from './AppMenuItem'
 
@@ -18,12 +19,17 @@ const appMenuItems = [
     Icon: IconDashboard,
   },
   {
-    name: 'Orders',
-    link: '/orders',
+    name: 'Login',
+    link: '/login',
     Icon: IconShoppingCart,
   },
   {
-    name: 'Customers',
+    name: 'Register',
+    link: '/register',
+    Icon: VpnKeyIcon,
+  },
+  {
+    name: 'Users',
     link: '/users',
     Icon: IconPeople,
   },

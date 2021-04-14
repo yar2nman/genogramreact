@@ -21,7 +21,11 @@ import {
 } from "react-router-dom";
 
 import AppMenu from './components/appMenue/AppMenu'
-import {UserList} from './components/userlist/userList';
+import {UserList} from './components/user/userList';
+import SignIn from './components/user/user.login';
+import SignUpController from './components/user/user.register';
+import UserEditComponent from './components/user/user.edit';
+import UserCustomClaimsComponent from './components/user/user.customclaim';
 
 const App: React.FC = () => {
   const classes = useStyles();
@@ -41,11 +45,11 @@ const App: React.FC = () => {
   };
 
   return (
+    <div className={clsx('App', classes.root)}>
     <Router>
-      <div className={clsx('App', classes.root)}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+          <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -56,30 +60,40 @@ const App: React.FC = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Google identity platform User management
           </Typography>
         </Toolbar>
-      </AppBar>
-      <Drawer
-        variant='temporary'
-        open={showDrawer}
-        onClose={toggleDrawer(false)}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <AppMenu />
-      </Drawer>
+        </AppBar>
+
+
+        <Drawer
+          variant='temporary'
+          open={showDrawer}
+          onClose={toggleDrawer(false)}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <AppMenu />
+        </Drawer>
+          
+
       <main className={classes.content}>
         <Container maxWidth="lg" className={classes.container}>
-          
+
+        
+      
+     
           {/* <Typography>I'm the content a</Typography> */}
           <Switch>
           <Route exact path="/">
             {/* <Home /> */}Home
           </Route>
-          <Route path="/about">
-            {/* <About /> */}About
+          <Route path="/login">
+            <SignIn />
+          </Route>
+          <Route path="/register">
+            <SignUpController />
           </Route>
           <Route path="/dashboard">
             {/* <Dashboard /> */}Dashboard
@@ -88,14 +102,20 @@ const App: React.FC = () => {
             {/* <Dashboard /> */}Reports
           </Route>
           <Route path="/users">
-            <UserList users={[]} load={false}  />
+            <UserList />
+          </Route>
+          <Route path="/edituser/:uid">
+            <UserEditComponent />
+          </Route>
+          <Route path="/userclaims/:uid">
+            <UserCustomClaimsComponent />
           </Route>
         </Switch>
 
         </Container>
       </main>
-    </div>
     </Router>   
+    </div>
   )
 }
 
@@ -115,10 +135,10 @@ const useStyles = makeStyles(theme => ({
     color: '#fff',
   },
   content: {
-    marginTop: '35px',
+    marginTop: '40px',
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto',
+    overflow: 'none',
   },
   container: {
     paddingTop: theme.spacing(4),

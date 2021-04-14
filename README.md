@@ -1,3 +1,17 @@
+## insert firebase keys to the project
+
+create file in /src/ folder and name it firebasekeys.tsx
+
+export const fbconfig = {
+    // here dd the firebase keys
+    apiKey: "api key",
+    authDomain: "[project id].firebaseapp.com",
+    .....
+    }
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -50,3 +64,18 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 # Installing Material UI, Material Icons and React Router Dom
 
 npm install --save @material-ui/core @material-ui/icons react-router-dom @types/react-router-dom
+
+
+# My Inputs
+
+# material design
+
+Templates, examples ..
+
+https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started
+
+# Firebase installation
+
+npm i firebase
+
+npm i @react-firebase/auth
