@@ -400,8 +400,8 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
   const initDiagram = () => {
     const $ = go.GraphObject.make;
     const diagram = $(go.Diagram, {
-      initialAutoScale: go.Diagram.Uniform,
       "undoManager.isEnabled": true,
+      initialAutoScale: go.Diagram.Uniform,
       // when a node is selected, draw a big yellow circle behind it
       nodeSelectionAdornmentTemplate: $(
         go.Adornment,

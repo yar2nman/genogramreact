@@ -21,11 +21,6 @@ import {
 } from "react-router-dom";
 
 import AppMenu from './components/appMenue/AppMenu'
-import {UserList} from './components/user/userList';
-import SignIn from './components/user/user.login';
-import SignUpController from './components/user/user.register';
-import UserEditComponent from './components/user/user.edit';
-import UserCustomClaimsComponent from './components/user/user.customclaim';
 import TestChart from './components/Genogram/TestChart';
 import {TestChartJeno} from './components/Genogram/TestChartJeno';
 import {FunctionalChartJenoState} from './components/Genogram/FunctionalTestChartJeno';
@@ -92,26 +87,12 @@ const App: React.FC = () => {
           <Route exact path="/">
             {/* <Home /> */}Home
           </Route>
-          <Route path="/login">
-            <SignIn />
-          </Route>
-          <Route path="/register">
-            <SignUpController />
-          </Route>
+          
           <Route path="/dashboard">
             {/* <Dashboard /> */}Dashboard
           </Route>
           <Route path="/reports">
             {/* <Dashboard /> */}Reports
-          </Route>
-          <Route path="/users">
-            <UserList />
-          </Route>
-          <Route path="/edituser/:uid">
-            <UserEditComponent />
-          </Route>
-          <Route path="/userclaims/:uid">
-            <UserCustomClaimsComponent />
           </Route>
           <Route path="/testchart">
             <TestChart />
