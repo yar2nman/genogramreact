@@ -3,13 +3,23 @@ import React, { useState, useEffect } from "react";
 import { ReactDiagram } from "gojs-react";
 import "./testchartjen.css";
 import { GenogramLayout } from "./genogramLayout";
-export const FunctionalChartJenoState = () => {
-  const [modelData, setModelData] = useState({
+import { SelectedInfo } from "./SelectedInfo";
+
+interface ChartProps {
+  nodeDataArray?: Array<go.ObjectData>;
+  modelData?: go.ObjectData;
+  selectedKey?: number | null;
+  skipsDiagramUpdate?: boolean;
+}
+export const FunctionalChartJenoState = (props: ChartProps) => {
+  const [modelData, setModelData] = useState(props.modelData || {
     canRelink: true,
   });
-  const [selectedKey, setSelectedKey] = useState<number | any>(4);
+  const [selectedKey, setSelectedKey] = useState<number | any>(null);
+  const [selectedData , setSelectedData] = useState({} as any);
   const [skipsDiagramUpdate, setSkipsDiagramUpdate] = useState(false);
-  const [nodeDataArray, setNodeDataArray] = useState([
+  const [nodeDataArray, setNodeDataArray] = useState(props.nodeDataArray as [] || 
+    [
     { key: 0, n: "Aaron", s: "M", m: -10, f: -11, ux: 1, a: ["C", "F", "K"] },
     { key: 1, n: "Alice", s: "F", m: -12, f: -13, a: ["B", "H", "K"] },
     { key: 2, n: "Bob", s: "M", m: 1, f: 0, ux: 3, a: ["C", "H", "L"] },
@@ -70,7 +80,8 @@ export const FunctionalChartJenoState = () => {
     { key: -43, n: "Great Aunt", s: "F", m: -30, f: -31, a: ["E", "G"] },
     { key: -50, n: "Maternal Great Great", s: "F", ux: -51, a: ["D", "I"] },
     { key: -51, n: "Maternal Great Great", s: "M", a: ["B", "H"] },
-  ]);
+  ]
+  );
 
   const handleDiagramEvent = (e: go.DiagramEvent) => {
     const name = e.name;
@@ -78,8 +89,10 @@ export const FunctionalChartJenoState = () => {
       case "ChangedSelection": {
         const sel = e.subject.first();
         if (sel) {
+          setSelectedData(sel.data);
           setSelectedKey(sel.key);
         } else {
+          setSelectedData(null as any);
           setSelectedKey(null);
         }
         break;
@@ -104,97 +117,6 @@ export const FunctionalChartJenoState = () => {
     const removedLinkKeys = obj.removedLinkKeys;
     const modifiedModelData = obj.modelData;
   };
-
-  // public handleModelChange(obj: go.IncrementalData) {
-  //   const insertedNodeKeys = obj.insertedNodeKeys;
-  //   const modifiedNodeData = obj.modifiedNodeData;
-  //   const removedNodeKeys = obj.removedNodeKeys;
-  //   const insertedLinkKeys = obj.insertedLinkKeys;
-  //   const modifiedLinkData = obj.modifiedLinkData;
-  //   const removedLinkKeys = obj.removedLinkKeys;
-  //   const modifiedModelData = obj.modelData;
-
-  //   // maintain maps of modified data so insertions don't need slow lookups
-  //   const modifiedNodeMap = new Map<go.Key, go.ObjectData>();
-  //   const modifiedLinkMap = new Map<go.Key, go.ObjectData>();
-  //   this.setState(
-  //     produce((draft: AppState) => {
-  //       let narr = draft.nodeDataArray;
-  //       if (modifiedNodeData) {
-  //         modifiedNodeData.forEach((nd: go.ObjectData) => {
-  //           modifiedNodeMap.set(nd.key, nd);
-  //           const idx = this.mapNodeKeyIdx.get(nd.key);
-  //           if (idx !== undefined && idx >= 0) {
-  //             narr[idx] = nd;
-  //             if (draft.selectedData && draft.selectedData.key === nd.key) {
-  //               draft.selectedData = nd;
-  //             }
-  //           }
-  //         });
-  //       }
-  //       if (insertedNodeKeys) {
-  //         insertedNodeKeys.forEach((key: go.Key) => {
-  //           const nd = modifiedNodeMap.get(key);
-  //           const idx = this.mapNodeKeyIdx.get(key);
-  //           if (nd && idx === undefined) {  // nodes won't be added if they already exist
-  //             this.mapNodeKeyIdx.set(nd.key, narr.length);
-  //             narr.push(nd);
-  //           }
-  //         });
-  //       }
-  //       if (removedNodeKeys) {
-  //         narr = narr.filter((nd: go.ObjectData) => {
-  //           if (removedNodeKeys.includes(nd.key)) {
-  //             return false;
-  //           }
-  //           return true;
-  //         });
-  //         draft.nodeDataArray = narr;
-  //         this.refreshNodeIndex(narr);
-  //       }
-
-  //       let larr = draft.linkDataArray;
-  //       if (modifiedLinkData) {
-  //         modifiedLinkData.forEach((ld: go.ObjectData) => {
-  //           modifiedLinkMap.set(ld.key, ld);
-  //           const idx = this.mapLinkKeyIdx.get(ld.key);
-  //           if (idx !== undefined && idx >= 0) {
-  //             larr[idx] = ld;
-  //             if (draft.selectedData && draft.selectedData.key === ld.key) {
-  //               draft.selectedData = ld;
-  //             }
-  //           }
-  //         });
-  //       }
-  //       if (insertedLinkKeys) {
-  //         insertedLinkKeys.forEach((key: go.Key) => {
-  //           const ld = modifiedLinkMap.get(key);
-  //           const idx = this.mapLinkKeyIdx.get(key);
-  //           if (ld && idx === undefined) {  // links won't be added if they already exist
-  //             this.mapLinkKeyIdx.set(ld.key, larr.length);
-  //             larr.push(ld);
-  //           }
-  //         });
-  //       }
-  //       if (removedLinkKeys) {
-  //         larr = larr.filter((ld: go.ObjectData) => {
-  //           if (removedLinkKeys.includes(ld.key)) {
-  //             return false;
-  //           }
-  //           return true;
-  //         });
-  //         draft.linkDataArray = larr;
-  //         this.refreshLinkIndex(larr);
-  //       }
-  //       // handle model data changes, for now just replacing with the supplied object
-  //       if (modifiedModelData) {
-  //         draft.modelData = modifiedModelData;
-  //       }
-  //       draft.skipsDiagramUpdate = true;  // the GoJS model already knows about these updates
-  //     })
-  //   );
-  // }
-
   const handleRelinkChange = (e: any) => {
     const target = e.target;
     const value = target.checked;
@@ -211,7 +133,7 @@ export const FunctionalChartJenoState = () => {
         onDiagramEvent={handleDiagramEvent}
         onModelChange={handleModelChange}
       />
-      <label>
+      {/* <label>
         Allow Relinking?
         <input
           type="checkbox"
@@ -219,8 +141,8 @@ export const FunctionalChartJenoState = () => {
           checked={modelData.canRelink}
           onChange={handleRelinkChange}
         />
-      </label>
-      {selectedKey && <p>Selected key: {selectedKey}</p>}
+      </label> */}
+      {selectedData && <SelectedInfo data={selectedData} />}
     </div>
   );
 };
@@ -620,7 +542,8 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
         $(go.Shape, { strokeWidth: 2, stroke: "blue" })
       )
     );
-    setupDiagram(diagram, nodeDataArray, 4);
+    setupDiagram(diagram, nodeDataArray, null);
+    diagram.addDiagramListener('ChangedSelection', onDiagramEvent);
 
     return diagram;
   };
