@@ -39,6 +39,16 @@ const appMenuItems = [
     Icon: IconBarChart,
   },
   {
+    name: 'Chart',
+    link: '/testchart',
+    Icon: IconBarChart,
+  },
+  {
+    name: 'ChartJeno',
+    link: '/testchartjeno',
+    Icon: IconBarChart,
+  },
+  {
     name: 'Nested Pages',
     Icon: IconLibraryBooks,
     items: [
