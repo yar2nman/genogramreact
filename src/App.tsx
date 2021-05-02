@@ -28,6 +28,7 @@ import UserEditComponent from './components/user/user.edit';
 import UserCustomClaimsComponent from './components/user/user.customclaim';
 import TestChart from './components/Genogram/TestChart';
 import {TestChartJeno} from './components/Genogram/TestChartJeno';
+import {FunctionalChartJenoState} from './components/Genogram/FunctionalTestChartJeno';
 
 const App: React.FC = () => {
   const classes = useStyles();
@@ -117,6 +118,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/testchartjeno">
             <TestChartJeno />
+          </Route>
+          <Route path="/functionaltestchartjeno">
+            <FunctionalChartJenoState />
           </Route>
         </Switch>
 
