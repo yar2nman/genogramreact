@@ -287,10 +287,10 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
           const link = findMarriage(diagram, key, wife);
           if (link === null) {
             // add a label node for the marriage link
-            const mlab = { s: 'LinkLabel' };
+            const mlab: any = { s: 'LinkLabel' };
             model.addNodeData(mlab);
             // add the marriage link itself, also referring to the label node
-            const mdata = { from: key, to: wife, labelKeys: [mlab.s], category: 'Marriage' };
+            const mdata = { from: key, to: wife, labelKeys: [mlab.key], category: 'Marriage' };
             model.addLinkData(mdata);
           }
         }
@@ -306,10 +306,10 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
           const link = findMarriage(diagram, key, husband);
           if (link === null) {
             // add a label node for the marriage link
-            const mlab = { s: 'LinkLabel' };
+            const mlab: any = { s: 'LinkLabel' };
             model.addNodeData(mlab);
             // add the marriage link itself, also referring to the label node
-            const mdata = { from: key, to: husband, labelKeys: [mlab.s], category: 'Marriage' };
+            const mdata = { from: key, to: husband, labelKeys: [mlab.key], category: 'Marriage' };
             model.addLinkData(mdata);
           }
         }
@@ -338,17 +338,46 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
       }
     }
   }
-  const setupDiagram = (diagram: any, array: any, focusId: any) => {
+  // const setupDiagram = (diagram: any, array: any, focusId: any) => {
+  //           diagram.model =
+  //             go.GraphObject.make(go.GraphLinksModel,
+  //               { // declare support for link label nodes
+  //                 linkLabelKeysProperty: 'labelKeys',
+  //                 // this property determines which template is used
+  //                 nodeCategoryProperty: "s",
+  //                 // if a node data object is copied, copy its data.a Array
+  //                 copiesArrays: true,
+  //                 // create all of the nodes for people
+  //                 // nodeDataArray: array
+  //               });
+  //           setupMarriages(diagram);
+  //           setupParents(diagram);
+      
+  //           var node = diagram.findNodeForKey(focusId);
+  //           if (node !== null) {
+  //             diagram.select(node);
+  //             // remove any spouse for the person under focus:
+  //             //node.linksConnected.each(function(l) {
+  //             //  if (!l.isLabeledLink) return;
+  //             //  l.opacity = 0;
+  //             //  var spouse = l.getOtherNode(node);
+  //             //  spouse.opacity = 0;
+  //             //  spouse.pickable = false;
+  //             //});
+  //           }
+      
+  //           return;
+  //         }
+
+          const setupDiagram = (diagram: any, array: any, focusId: any) => {
             diagram.model =
               go.GraphObject.make(go.GraphLinksModel,
                 { // declare support for link label nodes
-                  linkLabelKeysProperty: 'labelKeys',
+                  linkLabelKeysProperty: "labelKeys",
                   // this property determines which template is used
                   nodeCategoryProperty: "s",
-                  // if a node data object is copied, copy its data.a Array
-                  copiesArrays: true,
                   // create all of the nodes for people
-                  // nodeDataArray: array
+                  nodeDataArray: array
                 });
             setupMarriages(diagram);
             setupParents(diagram);
@@ -365,9 +394,9 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
               //  spouse.pickable = false;
               //});
             }
-      
-            return;
           }
+      
+         
   const initDiagram = () => {
     const $ = go.GraphObject.make;
     const diagram = $(go.Diagram, {
@@ -500,7 +529,7 @@ const findMarriage = (diagram: go.Diagram, a: number, b: number) => {  // A and 
         $(go.Shape, { strokeWidth: 2, stroke: "blue" })
       )
     );
-    setupDiagram(diagram, [], 4);
+    setupDiagram(diagram, nodeDataArray, 4);
 
     return diagram;
   };

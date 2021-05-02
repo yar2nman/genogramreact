@@ -49,6 +49,11 @@ const appMenuItems = [
     Icon: IconBarChart,
   },
   {
+    name: 'Functional ChartJeno',
+    link: '/functionaltestchartjeno',
+    Icon: IconBarChart,
+  },
+  {
     name: 'Nested Pages',
     Icon: IconLibraryBooks,
     items: [
@@ -72,7 +77,7 @@ const appMenuItems = [
 
 const AppMenu: React.FC = () => {
   const classes = useStyles()
-
+  
   return (
     <List component="nav" className={classes.appMenu} disablePadding>
       {appMenuItems.map((item, index) => (
