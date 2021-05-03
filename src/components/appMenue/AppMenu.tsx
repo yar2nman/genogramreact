@@ -4,75 +4,22 @@ import { makeStyles, createStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 
 import IconDashboard from '@material-ui/icons/Dashboard'
-import IconShoppingCart from '@material-ui/icons/ShoppingCart'
-import IconPeople from '@material-ui/icons/People'
 import IconBarChart from '@material-ui/icons/BarChart'
-import IconLibraryBooks from '@material-ui/icons/LibraryBooks'
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import AppMenuItem from './AppMenuItem'
 
 const appMenuItems = [
   {
-    name: 'Dashboard',
+    name: 'Home',
     link: '/',
     Icon: IconDashboard,
   },
   {
-    name: 'Login',
-    link: '/login',
-    Icon: IconShoppingCart,
-  },
-  {
-    name: 'Register',
-    link: '/register',
-    Icon: VpnKeyIcon,
-  },
-  {
-    name: 'Users',
-    link: '/users',
-    Icon: IconPeople,
-  },
-  {
-    name: 'Reports',
-    link: '/reports',
-    Icon: IconBarChart,
-  },
-  {
-    name: 'Chart',
-    link: '/testchart',
-    Icon: IconBarChart,
-  },
-  {
-    name: 'ChartJeno',
-    link: '/testchartjeno',
-    Icon: IconBarChart,
-  },
-  {
-    name: 'Functional ChartJeno',
+    name: 'test Chart',
     link: '/functionaltestchartjeno',
     Icon: IconBarChart,
   },
-  {
-    name: 'Nested Pages',
-    Icon: IconLibraryBooks,
-    items: [
-      {
-        name: 'Level 2',
-      },
-      {
-        name: 'Level 2',
-        items: [
-          {
-            name: 'Level 3',
-          },
-          {
-            name: 'Level 3',
-          },
-        ],
-      },
-    ],
-  },
+ 
 ]
 
 const AppMenu: React.FC = () => {
