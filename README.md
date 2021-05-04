@@ -66,11 +66,11 @@ https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-starte
 This was a requirement in a free lancing project.
 
     I used informations from:
-    https://gojs.net/latest/samples/genogram.html
-    https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html
-    https://www.npmjs.com/package/gojs-react
-    https://github.com/NorthwoodsSoftware/gojs-react-basic
-    https://gojs.net/latest/intro/react.html
-    https://github.com/NorthwoodsSoftware/gojs-react
+    [GoJs Samples genogram](https://gojs.net/latest/samples/genogram.html)
+    [GoJs github samples](https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html)
+    [GoJs react npm](https://www.npmjs.com/package/gojs-react)
+    [GoJs react basic](https://github.com/NorthwoodsSoftware/gojs-react-basic)
+    [GoJs react intro](https://gojs.net/latest/intro/react.html)
+    [Girhub go js react](https://github.com/NorthwoodsSoftware/gojs-react)
 
 and other for sure :)
