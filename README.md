@@ -64,8 +64,7 @@ https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-starte
 ## This repo is to show how to integrate gojs genogram into react typescript app
 
 This was a requirement in a free lancing project.
-
-    I used informations from:
+I used informations from:
     [GoJs Samples genogram](https://gojs.net/latest/samples/genogram.html)
     [GoJs github samples](https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html)
     [GoJs react npm](https://www.npmjs.com/package/gojs-react)
