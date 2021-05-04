@@ -350,7 +350,7 @@ export const GenomDiagram = (props: GenomDiagramProps) => {
         diagram.nodeTemplateMap.add(
             "LinkLabel",
             $(go.Node, {
-                selectable: false,
+                selectable: true,
                 width: 1,
                 height: 1,
                 fromEndSegmentLength: 20,
@@ -372,7 +372,7 @@ export const GenomDiagram = (props: GenomDiagramProps) => {
             "Marriage", // for marriage relationships
             $(
                 go.Link,
-                { selectable: false },
+                { selectable: true },
                 $(go.Shape, { strokeWidth: 3, stroke: "blue" })
             )
         );

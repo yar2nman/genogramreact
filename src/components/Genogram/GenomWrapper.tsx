@@ -18,6 +18,7 @@ export const GenomWrapper = (props: GenomWrapperProps) => {
   const [selectedKey, setSelectedKey] = useState<number | any>(null);
   const [selectedData, setSelectedData] = useState({} as any);
   const [skipsDiagramUpdate, setSkipsDiagramUpdate] = useState(false);
+  const [selctionObject, setSelctionObject] = useState<any>(null)
   const [nodeDataArray, setNodeDataArray] = useState(props.nodeDataArray as [] ||
     [
       { key: 0, n: "Aaron", s: "M", m: -10, f: -11, ux: 1, a: ["C", "F", "K"] },
@@ -91,9 +92,11 @@ export const GenomWrapper = (props: GenomWrapperProps) => {
         if (sel) {
           setSelectedData(sel.data);
           setSelectedKey(sel.key);
+          setSelctionObject(sel);
         } else {
           setSelectedData(null as any);
           setSelectedKey(null);
+          setSelctionObject(null)
         }
         break;
       }
@@ -138,7 +141,7 @@ export const GenomWrapper = (props: GenomWrapperProps) => {
         onDiagramEvent={handleDiagramEvent}
         onModelChange={() => handleModelChange}
       />
-      {/* <label>
+      <label>
         Allow Relinking?
         <input
           type="checkbox"
@@ -146,8 +149,22 @@ export const GenomWrapper = (props: GenomWrapperProps) => {
           checked={modelData.canRelink}
           onChange={handleRelinkChange}
         />
-      </label> */}
-      {selectedData && <SelectedInfo data={selectedData} />}
+      </label>
+      {selectedData && 
+        <div>
+            <SelectedInfo data={selectedData} />
+        </div>
+      }
+
+      {selctionObject?.fromNode?.data && 
+      <div>
+        <label>Connection Selected</label>
+          <label>From</label>
+        <SelectedInfo data={selctionObject?.fromNode?.data} />
+          <label htmlFor="">To</label>
+        <SelectedInfo data={selctionObject?.toNode?.data} />
+        <br/>
+      </div> }
     </div>
   );
 };
