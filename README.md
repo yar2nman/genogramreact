@@ -1,16 +1,3 @@
-## insert firebase keys to the project
-
-create file in /src/ folder and name it firebasekeys.tsx
-
-export const fbconfig = {
-    // here dd the firebase keys
-    apiKey: "api key",
-    authDomain: "[project id].firebaseapp.com",
-    .....
-    }
-
-
-
 
 # Getting Started with Create React App
 
@@ -74,8 +61,16 @@ Templates, examples ..
 
 https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started
 
-# Firebase installation
+## This repo is to show how to integrate gojs genogram into react typescript app
 
-npm i firebase
+This was a requirement in a free lancing project.
 
-npm i @react-firebase/auth
+    I used informations from:
+    https://gojs.net/latest/samples/genogram.html
+    https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html
+    https://www.npmjs.com/package/gojs-react
+    https://github.com/NorthwoodsSoftware/gojs-react-basic
+    https://gojs.net/latest/intro/react.html
+    https://github.com/NorthwoodsSoftware/gojs-react
+
+and other for sure :)

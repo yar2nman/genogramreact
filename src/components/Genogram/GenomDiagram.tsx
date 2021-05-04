@@ -9,7 +9,6 @@ import { GenogramLayout } from "./genogramLayout";
 
 interface GenomDiagramProps {
     nodeDataArray: Array<go.ObjectData>;
-    // linkDataArray: Array<go.ObjectData>;
     modelData: go.ObjectData;
     skipsDiagramUpdate: boolean;
     onDiagramEvent: (e: go.DiagramEvent) => void;
