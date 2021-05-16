@@ -68,17 +68,17 @@ This was a requirement in a freelancing project.
 I used informations from:
 
 
-1.[GoJs Samples genogram](https://gojs.net/latest/samples/genogram.html)
+1. [GoJs Samples genogram](https://gojs.net/latest/samples/genogram.html)
 
 
-1.[GoJs github samples](https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html)
+1. [GoJs github samples](https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/genogram.html)
 
-1.[GoJs react npm](https://www.npmjs.com/package/gojs-react)
+1. [GoJs react npm](https://www.npmjs.com/package/gojs-react)
     
-1.[GoJs react basic](https://github.com/NorthwoodsSoftware/gojs-react-basic)
+1. [GoJs react basic](https://github.com/NorthwoodsSoftware/gojs-react-basic)
 
-1.[GoJs react intro](https://gojs.net/latest/intro/react.html)
+1. [GoJs react intro](https://gojs.net/latest/intro/react.html)
 
-1.[Girhub go js react](https://github.com/NorthwoodsSoftware/gojs-react)
+1. [Girhub go js react](https://github.com/NorthwoodsSoftware/gojs-react)
 
 and other for sure :)
